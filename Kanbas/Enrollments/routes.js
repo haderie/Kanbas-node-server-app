@@ -1,8 +1,8 @@
 import * as enrollmentsDao from "./dao.js";
 
 export default function EnrollmentRoutes(app) {
-  app.get("/api/enrollments", (req, res) => {
-    const enrollments = enrollmentsDao.findAllEnrollments();
+  app.get("/api/enrollments", async (req, res) => {
+    const enrollments = await enrollmentsDao.findAllEnrollments();
     res.send(enrollments);
   });
 
