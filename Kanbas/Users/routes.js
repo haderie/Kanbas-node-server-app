@@ -137,7 +137,6 @@ export default function UserRoutes(app) {
 
   app.get("/api/users", findAllUsers);
   app.post("/api/users/current/courses", createCourse);
-
   app.post("/api/users", createUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", findUserById);
@@ -149,4 +148,5 @@ export default function UserRoutes(app) {
   app.post("/api/users/profile", profile);
   app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
   app.get("/api/users/:uid/courses", findCoursesForUser);
+
 }
