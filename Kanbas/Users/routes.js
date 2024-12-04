@@ -94,11 +94,12 @@ export default function UserRoutes(app) {
       res.sendStatus(401);
       return;
     }
-    if (currentUser.role === "FACULTY") {
-      const courses = await courseDao.findAllCourses();
-      res.json(courses);
-      return;
-    }
+
+    // if (currentUser.role === "FA") {
+    //   const courses = await courseDao.findAllCourses();
+    //   res.json(courses);
+    //   return;
+    // }
     let { uid } = req.params;
     if (uid === "current") {
       uid = currentUser._id;
@@ -129,7 +130,7 @@ export default function UserRoutes(app) {
       const currentUser = req.session["currentUser"];
       uid = currentUser._id;
     }
-    const status = await enrollmentsDao.unenrollUserFromCourse(uid, cid);
+    const status = await enrollmentsDao.unenrollUserInCourse(uid, cid);
     res.send(status);
   };
   app.post("/api/users/:uid/courses/:cid", enrollUserInCourse);
@@ -147,6 +148,6 @@ export default function UserRoutes(app) {
   app.delete("/api/users/:userId", deleteUser);
   app.post("/api/users/signout", signout);
   app.post("/api/users/profile", profile);
-  app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
   app.get("/api/users/:uid/courses", findCoursesForUser);
+  app.get("/api/users/:userId/courses", findCoursesForEnrolledUser);
 }
