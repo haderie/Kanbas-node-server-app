@@ -33,11 +33,12 @@ export default function EnrollmentRoutes(app) {
     res.send({ message: "Enrolled successfully" });
   });
 
+
   // Unenroll user from course (DELETE request)
   app.delete("/api/enrollments/:userId/:courseId", async (req, res) => {
     const { userId, courseId } = req.params;
     // Logic to unenroll the user from the course
-    await enrollmentsDao.unenrollUserInCourse(userId, courseId);
+    await enrollmentsDao.unenrollUserFromCourse(userId, courseId);
     res.send({ message: "Unenrolled successfully" });
   });
 }

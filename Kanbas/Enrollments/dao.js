@@ -13,6 +13,6 @@ export async function findUsersForCourse(courseId) {
 export function enrollUserInCourse(user, course) {
   return model.create({ user, course });
 }
-export function unenrollUserInCourse(user, course) {
+export function unenrollUserFromCourse(user, course) {
   return model.deleteOne({ user, course });
 }
